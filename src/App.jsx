@@ -4,8 +4,8 @@ import Table from "./components/table.jsx";
 function App() {
   return (
     <>
-      <Table/>
       <SearchBar/>
+      <Table/>
     </>
   )
 }

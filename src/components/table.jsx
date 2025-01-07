@@ -2,9 +2,17 @@ import React from 'react'
 
 const Table = () => {
   return (
-    <>
-    <h1>mande</h1>
-    </>
+    <section>
+        <table className='table'>
+            <thead>
+                <th scope='col'>#</th>
+                <th scope='col'>Name</th>
+                <th scope='col'>Artist</th>
+                <th scope='col'>Album</th>
+                <th scope='col'>Duration</th>
+            </thead>
+        </table>
+    </section>
   )
 }
 
