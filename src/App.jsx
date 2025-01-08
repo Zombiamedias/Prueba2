@@ -57,7 +57,7 @@ class App extends Component {
                 onPageChanged={this.onPageChanged}
               />
             </div>
-            {currentSongs.map(songs => <Item/ key={item} song={song}> )}
+            {currentSongs.map(songs => <Item key={Item} song={songs} />  ) }
           </div>
         </div>
       </section>
