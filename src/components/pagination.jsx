@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
 import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
 
 // RANGE SLIDER
 const leftP = "LEFT";
@@ -32,7 +32,6 @@ class Pagination extends Component {
     this.totalSongs = Math.ceil(this.totalSongs / this.pageLimit); // total songs is calculated by dividing total songs by page limit and rounding up to the nearest integer
     this.state = { crrntpage: 1 }; // current page is set to 1
   }
-}
 
   // pagination methods
   fetchPageNumbers = () => {
@@ -72,15 +71,17 @@ class Pagination extends Component {
       return [1, ...pags, totalPags];
     }
     return range(1, totalPags);
-  }
+  };
 
   render() {
     if (!this.totalSongs || this.totalPags === 1) return null;
+
     const { currentPag } = this.state;
     const pags = this.fetchPageNumbers();
+
     return (
       <Fragment>
-        <nav aria-label="Results pagination">
+        <nav aria-label="Songs pagination">
           <ul className="pagination">
             {pags.map((pag, index) => {
               // left case
@@ -128,17 +129,16 @@ class Pagination extends Component {
                   </a>
                 </li>
               );
-
-            } ) }
-
+            })}
           </ul>
         </nav>
       </Fragment>
     );
   }
-
   //componen Mount
-  componentDidMount() {this.gotoPag(1)}
+  componentDidMount() {
+    this.gotoPag(1);
+  }
 
   gotoPag = (pag) => {
     const { onPageChanged = (f) => f } = this.props;
@@ -149,25 +149,26 @@ class Pagination extends Component {
       totalSongs: this.totalSongs,
     };
     this.setState({ currentPag }, () => onPageChanged(pagData));
-
-    handleClick = (pag) => (evt) => {
-      evt.preventDefault();
-      this.gotoPag(pag);
-    };
-    handleMoveLeft = (evt) => {
-      evt.preventDefault();
-      this.gotoPag(this.state.currentPag - this.pagNeighbours * 2 - 1);
-    };
-    handleMoveRight = (evt) => {
-      evt.preventDefault();
-      this.gotoPag(this.state.currentPag + this.pagNeighbours * 2 + 1);
-    };
-    // Proptypes
+  };
+  handleClick = (pag) => (evt) => {
+    evt.preventDefault();
+    this.gotoPag(pag);
+  };
+  handleMoveLeft = (evt) => {
+    evt.preventDefault();
+    this.gotoPag(this.state.currentPag - this.pagNeighbours * 2 - 1);
+  };
+  handleMoveRight = (evt) => {
+    evt.preventDefault();
+    this.gotoPag(this.state.currentPag + this.pagNeighbours * 2 + 1);
+  };
 }
 
+// Proptypes
 Pagination.propTypes = {
   totalSongs: PropTypes.number.isRequired,
   pagLimit: PropTypes.number.isRequired,
   pagNeighbours: PropTypes.number.isRequired,
   onPageChanged: PropTypes.func,
 };
+export default Pagination;
